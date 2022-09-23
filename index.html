@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+<html ng-app="App">
+<body ng-controller="qrCrtl">
+<qr-scanner width="400" height="300" ng-success="onSuccess(data)" ng-error="onError(error)" />
 
-<div ng-app="">
-  <p>Name : <input type="text" ng-model="name"></p>
-  <input type="file" accept="image/*" capture="environment">
-  <h1>Hello {{name}}</h1>
-</div>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+<script src="bower_components/angular-qr-scanner/qr-scanner.js"></script>
+<script src="bower_components/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>
+<script>
 
+var App = angular.module('App', ['qrScanner']);
+
+App.controller('qrCrtl', ['$scope', function($scope) {
+    $scope.onSuccess = function(data) {
+        console.log(data);
+    };
+    $scope.onError = function(error) {
+        console.log(error);
+    };
+    $scope.onVideoError = function(error) {
+        console.log(error);
+    };
+}]);
+
+</script>
 </body>
 </html>
